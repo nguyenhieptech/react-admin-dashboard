@@ -1,14 +1,5 @@
-import { Button } from '@/components';
+import { AppProvider } from '@/providers';
 
-function App() {
-  return (
-    <>
-      <h1 className="text-3xl font-bold">
-        Hello React Admin Dashboard
-        <Button />
-      </h1>
-    </>
-  );
+export function App() {
+  return <AppProvider />;
 }
-
-export default App;
