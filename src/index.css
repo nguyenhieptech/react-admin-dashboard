@@ -4,7 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
 #root {
   font-family: 'Inter', sans-serif;
-  @apply scroll-smooth antialiased;
+  @apply h-full w-full scroll-smooth antialiased;
+  @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50;
 }
