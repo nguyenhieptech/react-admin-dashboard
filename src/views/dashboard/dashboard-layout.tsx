@@ -1,27 +1,42 @@
 import { imageRegistry } from '@/assets';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components';
 import { useSidebar, useTheme } from '@/hooks';
 import { cn } from '@/utils';
 import { Dialog, Menu, Transition } from '@headlessui/react';
+import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import {
-  Bars3Icon,
-  ComputerDesktopIcon,
-  MagnifyingGlassIcon,
-  MoonIcon,
-  SunIcon,
-} from '@heroicons/react/20/solid';
-import {
+  ArrowLeftOnRectangleIcon,
   Cog6ToothIcon,
+  // Cog6ToothIcon,
+  ComputerDesktopIcon,
   FolderIcon,
+  // FolderIcon,
+  MoonIcon,
   ServerIcon,
+  // ServerIcon,
+  SunIcon,
+  UserIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Home', href: '/', icon: FolderIcon },
-  { name: 'Deployments', href: 'deployments', icon: ServerIcon },
-  { name: 'Sign In', href: 'sign-in', icon: Cog6ToothIcon },
+  {
+    name: 'Home',
+    href: '/',
+    icon: FolderIcon,
+  },
+  {
+    name: 'Deployments',
+    href: 'deployments',
+    icon: ServerIcon,
+  },
+  {
+    name: 'Sign In',
+    href: 'sign-in',
+    icon: Cog6ToothIcon,
+  },
 ];
 
 const technologies = [
@@ -54,7 +69,6 @@ const technologies = [
     name: 'Radix Primitives',
     href: 'https://www.radix-ui.com/',
     initial: 'R',
-    current: false,
   },
   {
     id: 6,
@@ -71,14 +85,56 @@ const technologies = [
 ];
 
 const userNavigation = [
-  { name: 'Profile', href: 'profile' },
-  { name: 'Sign out', href: 'sign-in' },
+  {
+    name: 'Profile',
+    href: 'profile',
+    icon: <UserIcon className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />,
+  },
+  {
+    name: 'Sign out',
+    href: 'sign-in',
+    icon: (
+      <ArrowLeftOnRectangleIcon
+        className="mr-2 h-4 w-4 shrink-0"
+        aria-hidden="true"
+      />
+    ),
+  },
 ];
 
 export function DashboardLayout() {
   const sidebar = useSidebar();
   const { isDarkTheme, handleDarkTheme, handleLightTheme, handleSystemTheme } =
     useTheme();
+
+  const themeOptions = useMemo(() => {
+    return [
+      {
+        id: 1,
+        name: 'Light',
+        icon: <SunIcon className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />,
+        handler: handleLightTheme,
+      },
+      {
+        id: 2,
+        name: 'Dark',
+        icon: <MoonIcon className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />,
+        handler: handleDarkTheme,
+      },
+      {
+        id: 3,
+        name: 'System',
+        icon: (
+          <ComputerDesktopIcon
+            className="mr-2 h-4 w-4 shrink-0"
+            aria-hidden="true"
+          />
+        ),
+        handler: handleSystemTheme,
+      },
+    ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -98,7 +154,7 @@ export function DashboardLayout() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-neutral-900/80" />
+            <div className="fixed inset-0 bg-neutral-900/60" />
           </Transition.Child>
 
           <div className="fixed inset-0 flex">
@@ -124,20 +180,20 @@ export function DashboardLayout() {
                   <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                     <button
                       type="button"
-                      className="-m-2.5 p-2.5"
+                      className="-m-2.5 rounded-md p-2.5 focus:outline-neutral-900"
                       onClick={sidebar.close}
                     >
                       <span className="sr-only">Close sidebar</span>
                       <XMarkIcon
-                        className="h-6 w-6 text-white"
+                        className="h-6 w-6 text-neutral-900 dark:text-white"
                         aria-hidden="true"
                       />
                     </button>
                   </div>
                 </Transition.Child>
                 {/* Sidebar component, swap this element with another sidebar if you like */}
-                <aside className="flex grow flex-col gap-y-2 overflow-y-auto bg-neutral-900 px-6 ring-1 ring-white/10">
-                  <div className="mt-2 flex h-16 items-center text-xl font-bold text-white">
+                <aside className="flex grow flex-col gap-y-2 overflow-y-auto bg-white px-6 ring-1 ring-white/10 dark:bg-neutral-900">
+                  <div className="mt-2 flex h-16 items-center text-xl font-bold text-primary-600 dark:text-primary-400">
                     Hiep Nguyen
                   </div>
                   <nav className="flex flex-1 flex-col">
@@ -152,16 +208,13 @@ export function DashboardLayout() {
                                 className={({ isActive }) => {
                                   return cn(
                                     isActive
-                                      ? 'bg-neutral-800 text-white'
-                                      : 'text-neutral-400 hover:bg-neutral-800 hover:text-white',
+                                      ? 'bg-primary-500 text-white dark:bg-primary-600'
+                                      : 'text-neutral-700 hover:bg-primary-500 hover:text-white dark:text-neutral-300 dark:hover:bg-primary-600 dark:hover:text-white',
                                     'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all'
                                   );
                                 }}
                               >
-                                <nav.icon
-                                  className="h-6 w-6 shrink-0"
-                                  aria-hidden="true"
-                                />
+                                <nav.icon className="h-5 w-5 shrink-0" />
                                 {nav.name}
                               </NavLink>
                             </li>
@@ -179,13 +232,11 @@ export function DashboardLayout() {
                                 href={technology.href}
                                 target="_blank"
                                 className={cn(
-                                  technology.current
-                                    ? 'bg-neutral-800 text-white'
-                                    : 'text-neutral-400 hover:bg-neutral-800 hover:text-white',
-                                  'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
+                                  'group flex gap-x-3 rounded-md p-2 text-sm font-medium leading-6 transition',
+                                  'text-neutral-700 hover:bg-neutral-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white'
                                 )}
                               >
-                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 text-[0.625rem] font-medium text-neutral-400 group-hover:text-white">
+                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-neutral-300 bg-neutral-100 text-[0.625rem] font-medium dark:border-neutral-700 dark:bg-neutral-800">
                                   {technology.initial}
                                 </span>
                                 <span className="truncate">
@@ -199,15 +250,23 @@ export function DashboardLayout() {
                       <li className="-mx-6 mt-auto">
                         <a
                           href="#"
-                          className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-neutral-800"
+                          className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-neutral-800 transition-all hover:bg-neutral-200 dark:text-neutral-100 dark:hover:bg-neutral-800"
                         >
-                          <img
-                            className="h-8 w-8 rounded-full bg-neutral-800"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt=""
-                          />
-                          <span className="sr-only">Your profile</span>
-                          <span aria-hidden="true">Hiep Nguyen</span>
+                          <Avatar>
+                            <AvatarImage
+                              src={imageRegistry.avatar1}
+                              alt="avatar"
+                            />
+                            <AvatarFallback className="bg-neutral-700 text-white">
+                              HN
+                            </AvatarFallback>
+                          </Avatar>
+                          <span
+                            aria-hidden="true"
+                            className="text-neutral-800 dark:text-neutral-100"
+                          >
+                            Hiep Nguyen
+                          </span>
                         </a>
                       </li>
                     </ul>
@@ -220,13 +279,13 @@ export function DashboardLayout() {
       </Transition.Root>
 
       {/* Static sidebar for desktop */}
-      <aside className="hidden bg-neutral-900 xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-72 xl:flex-col">
+      <aside className="hidden bg-neutral-50 dark:bg-neutral-900 xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-72 xl:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex grow flex-col gap-y-2 overflow-y-auto bg-black/10 px-6 ring-1 ring-white/5">
-          <div className="mt-3 flex h-16 items-center text-xl font-bold text-white">
+        <div className="flex grow flex-col gap-y-2 overflow-y-auto border-r px-6 ring-1 ring-white/5 dark:border-0">
+          <div className="mt-3 flex h-16 items-center text-xl font-bold text-primary-500 dark:text-primary-400">
             Hiep Nguyen
           </div>
-          <nav className="flex flex-1 flex-col" role="navigation">
+          <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" className="-mx-2 space-y-1">
@@ -237,8 +296,8 @@ export function DashboardLayout() {
                         className={({ isActive }) => {
                           return cn(
                             isActive
-                              ? 'bg-neutral-800 text-white'
-                              : 'text-neutral-400 hover:bg-neutral-800 hover:text-white',
+                              ? 'bg-primary-500 text-white dark:bg-primary-600'
+                              : 'text-neutral-700 hover:bg-primary-500 hover:text-white dark:text-neutral-300 dark:hover:bg-primary-600 dark:hover:text-white',
                             'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all'
                           );
                         }}
@@ -264,13 +323,11 @@ export function DashboardLayout() {
                         href={technology.href}
                         target="_blank"
                         className={cn(
-                          technology.current
-                            ? 'bg-neutral-800 text-white'
-                            : 'text-neutral-400 hover:bg-neutral-800 hover:text-white',
-                          'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
+                          'group flex gap-x-3 rounded-md p-2 text-sm font-medium leading-6 transition',
+                          'text-neutral-700 hover:bg-neutral-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white'
                         )}
                       >
-                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 text-[0.625rem] font-medium text-neutral-400 group-hover:text-white">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-neutral-300 bg-neutral-100 text-[0.625rem] font-medium dark:border-neutral-700 dark:bg-neutral-800">
                           {technology.initial}
                         </span>
                         <span className="truncate">{technology.name}</span>
@@ -282,14 +339,14 @@ export function DashboardLayout() {
               <li className="-mx-6 mt-auto">
                 <a
                   href="#"
-                  className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-neutral-800"
+                  className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-neutral-800 transition-all hover:bg-neutral-200 dark:text-neutral-100 dark:hover:bg-neutral-800"
                 >
-                  <img
-                    className="h-8 w-8 rounded-full bg-neutral-800"
-                    src={imageRegistry.avatar1}
-                    alt=""
-                  />
-                  <span className="sr-only">Your profile</span>
+                  <Avatar>
+                    <AvatarImage src={imageRegistry.avatar1} alt="avatar" />
+                    <AvatarFallback className="bg-neutral-700 text-white">
+                      HN
+                    </AvatarFallback>
+                  </Avatar>
                   <span aria-hidden="true">Hiep Nguyen</span>
                 </a>
               </li>
@@ -301,11 +358,11 @@ export function DashboardLayout() {
       {/* Content */}
       <div className="xl:ml-72">
         {/* Sticky header */}
-        <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 px-4 shadow-sm dark:bg-neutral-900 sm:px-6 lg:px-8">
+        <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-neutral-100 bg-white px-4 dark:border-white/5 dark:bg-neutral-900 sm:px-6 lg:px-7">
           {/* Hamburger icon to toggle mobile sidebar */}
           <button
             type="button"
-            className="-m-2.5 p-2.5 text-white xl:hidden"
+            className="-m-2.5 rounded-md p-2.5 focus-within:outline-1 focus:outline-neutral-900 xl:hidden"
             onClick={sidebar.open}
           >
             <span className="sr-only">Open sidebar</span>
@@ -325,7 +382,7 @@ export function DashboardLayout() {
                 />
                 <input
                   id="search-field"
-                  className="focus-visible:border-1 block h-9 w-80 rounded-md border border-neutral-700 bg-transparent px-2 py-0 pl-8 pr-0 text-sm text-white focus:ring-0 focus-visible:border-2 focus-visible:outline-none md:w-112"
+                  className="block h-9 w-80 rounded-md border border-neutral-200 bg-transparent px-2 py-0 pl-8 pr-0 text-sm text-white shadow-sm transition focus:border-neutral-400 focus:outline-none focus:ring-0 dark:border-neutral-800 dark:focus:border-neutral-600 md:w-112"
                   placeholder="Search..."
                   type="text"
                   name="search"
@@ -334,9 +391,9 @@ export function DashboardLayout() {
             </form>
           </div>
 
-          {/* Theme */}
+          {/* Theme switch */}
           <Menu as="div" className="relative">
-            <Menu.Button className="-m-1.5 flex items-center p-2 pl-3.5 focus-visible:rounded-md focus-visible:border focus-visible:border-neutral-600 focus-visible:outline-none">
+            <Menu.Button className="-mb-1 flex items-center p-2 pl-3.5 focus-visible:rounded-md focus-visible:border focus-visible:border-neutral-600 focus-visible:outline-none">
               <span className="sr-only">Theme</span>
               {isDarkTheme ? (
                 <MoonIcon
@@ -353,107 +410,70 @@ export function DashboardLayout() {
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
+              enterFrom="opacity-0 -translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 -translate-y-1"
             >
-              <Menu.Items className="absolute right-0 z-10 mt-2.5 w-44 origin-top-right rounded-md border border-white/10 bg-neutral-900 py-2 shadow-lg ring-1 ring-neutral-900/5 focus:outline-none">
-                <Menu.Item>
-                  {({ active }) => (
-                    <div
-                      className={cn(
-                        active
-                          ? 'bg-neutral-800 text-white hover:bg-neutral-800 hover:text-white'
-                          : '',
-                        'flex items-center space-x-6 px-3 py-1 text-sm font-normal leading-6 text-neutral-300 transition'
-                      )}
-                      onClick={handleLightTheme}
-                    >
-                      <SunIcon
-                        className="mr-2 h-4 w-4 shrink-0"
-                        aria-hidden="true"
-                      />
-                      Light
-                    </div>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <div
-                      className={cn(
-                        active
-                          ? 'bg-neutral-800 text-white hover:bg-neutral-800 hover:text-white'
-                          : '',
-                        'flex items-center space-x-6 px-3 py-1 text-sm font-normal leading-6 text-neutral-300 transition'
-                      )}
-                      onClick={handleDarkTheme}
-                    >
-                      <MoonIcon
-                        className="mr-2 h-4 w-4 shrink-0"
-                        aria-hidden="true"
-                      />
-                      Dark
-                    </div>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <div
-                      className={cn(
-                        active
-                          ? 'bg-neutral-800 text-white hover:bg-neutral-800 hover:text-white'
-                          : '',
-                        'flex items-center space-x-6 px-3 py-1 text-sm font-normal leading-6 text-neutral-300 transition'
-                      )}
-                      onClick={handleSystemTheme}
-                    >
-                      <ComputerDesktopIcon
-                        className="mr-2 h-4 w-4 shrink-0"
-                        aria-hidden="true"
-                      />
-                      System
-                    </div>
-                  )}
-                </Menu.Item>
+              <Menu.Items className="absolute right-0 z-10 mt-2.5 w-44 origin-top-right rounded-md border border-neutral-300 bg-white py-2 shadow-sm focus:outline-none dark:border-white/10 dark:bg-neutral-900">
+                {themeOptions.map((themeOption) => (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <div
+                        className={cn(
+                          active
+                            ? 'bg-neutral-100 hover:bg-neutral-100 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-800 dark:hover:text-white'
+                            : '',
+                          'flex cursor-pointer items-center space-x-6 px-3 py-1 text-sm font-normal leading-6 text-neutral-900 transition dark:text-neutral-300'
+                        )}
+                        onClick={themeOption.handler}
+                      >
+                        {themeOption.icon}
+                        {themeOption.name}
+                      </div>
+                    )}
+                  </Menu.Item>
+                ))}
               </Menu.Items>
             </Transition>
           </Menu>
 
           {/* User */}
           <Menu as="div" className="relative">
-            <Menu.Button className="-m-1.5 flex items-center p-1.5 focus-visible:rounded-md focus-visible:border focus-visible:border-neutral-600 focus-visible:outline-none">
+            <Menu.Button className="-m-1.5 flex items-center p-1.5 focus:outline-none">
               <span className="sr-only">Open user menu</span>
-              <img
-                className="h-8 w-8 rounded-full bg-neutral-50"
-                src={imageRegistry.avatar1}
-                alt="avatar"
-              />
+              <Avatar>
+                <AvatarImage src={imageRegistry.avatar1} alt="avatar" />
+                <AvatarFallback className="bg-neutral-700 text-white">
+                  HN
+                </AvatarFallback>
+              </Avatar>
             </Menu.Button>
             <Transition
               as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
+              enter="transition ease-out duration-150"
+              enterFrom="opacity-0 -translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 -translate-y-1"
             >
-              <Menu.Items className="absolute right-0 z-10 mt-2.5 w-44 origin-top-right rounded-md border border-white/10 bg-neutral-900 py-2 shadow-lg ring-1 ring-neutral-900/5 focus:outline-none">
-                {userNavigation.map((item) => (
-                  <Menu.Item key={item.name}>
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-44 origin-top-right rounded-md border border-neutral-300 bg-white py-2 shadow-sm outline-none focus:outline-none dark:border-white/10 dark:bg-neutral-900">
+                {userNavigation.map((userNav) => (
+                  <Menu.Item key={userNav.name}>
                     {({ active }) => (
                       <NavLink
-                        to={item.href}
+                        to={userNav.href}
                         className={cn(
                           active
-                            ? 'bg-neutral-800 text-white hover:bg-neutral-800 hover:text-white'
+                            ? 'bg-neutral-100 hover:bg-neutral-100 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-800 dark:hover:text-white'
                             : '',
-                          'flex items-center space-x-6 px-3 py-1 text-sm font-normal leading-6 text-neutral-300 transition'
+                          'flex items-center space-x-6 px-3 py-1 text-sm font-normal leading-6 text-neutral-900 transition dark:text-neutral-300'
                         )}
                       >
-                        {item.name}
+                        {userNav.icon}
+                        {userNav.name}
                       </NavLink>
                     )}
                   </Menu.Item>
@@ -464,7 +484,7 @@ export function DashboardLayout() {
         </header>
 
         {/* Children of Dashboard Layout */}
-        <main role="main">
+        <main role="main" className="h-full bg-white dark:bg-black">
           <Outlet />
         </main>
       </div>
