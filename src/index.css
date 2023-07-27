@@ -11,3 +11,7 @@ body,
   @apply h-full w-full scroll-smooth antialiased;
   @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50;
 }
+
+* {
+  @apply focus:outline-1 focus:outline-neutral-300 dark:focus:outline-neutral-900;
+}
