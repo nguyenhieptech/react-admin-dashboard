@@ -6,4 +6,5 @@
 
 #root {
   font-family: 'Inter', sans-serif;
+  @apply scroll-smooth antialiased;
 }
