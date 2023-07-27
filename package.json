@@ -10,11 +10,28 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@radix-ui/react-avatar": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@reduxjs/toolkit": "^1.9.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "date-fns": "^2.30.0",
+    "lucide-react": "^0.263.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-day-picker": "^8.8.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.1",
+    "recharts": "^2.7.2",
+    "redux-persist": "^6.0.0",
+    "tailwind-merge": "^1.14.0",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "@total-typescript/ts-reset": "^0.4.2",
     "@types/node": "^20.3.3",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
@@ -30,6 +47,7 @@
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2",
+    "tailwindcss-animate": "^1.0.6",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
   }

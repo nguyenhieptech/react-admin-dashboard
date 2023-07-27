@@ -22,5 +22,6 @@
       }
     }
   ],
-  "organizeImportsSkipDestructiveCodeActions": true
+  "organizeImportsSkipDestructiveCodeActions": true,
+  "tailwindFunctions": ["clsx", "cva"]
 }

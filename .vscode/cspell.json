@@ -22,7 +22,14 @@
     "svgs",
     "hookform",
     "reduxjs",
-    "persistor"
+    "persistor",
+    "zustand",
+    "headlessui",
+    "heroicons",
+    "tailwindlabs",
+    "tanstack",
+    "pmndrs",
+    "clsx"
   ],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
