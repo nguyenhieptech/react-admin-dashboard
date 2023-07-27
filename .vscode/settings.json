@@ -4,6 +4,7 @@
   "editor.formatOnPaste": true,
   "editor.lineHeight": 21,
   "editor.tabSize": 2,
+  "tailwindCSS.suggestions": true,
   "tailwindCSS.classAttributes": [
     // Default
     "class",
@@ -17,6 +18,14 @@
     "entered",
     "leave",
     "leaveFrom",
-    "leaveTo"
+    "leaveTo",
+
+    // Date Range Picker
+    "classNames",
+
+    "cva"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ]
 }
