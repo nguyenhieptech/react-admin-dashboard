@@ -64,6 +64,10 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      screens: {
+        '2xs': '320px',
+        xs: '375px',
+      },
     },
   },
   plugins: ['@tailwindcss/forms', 'tailwindcss-animate'],

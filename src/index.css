@@ -5,11 +5,17 @@
 @tailwind utilities;
 
 html,
-body,
-#root {
+body {
   font-family: 'Inter', sans-serif;
   @apply h-full w-full scroll-smooth antialiased;
   @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50;
+  /* https://www.youtube.com/shorts/rwriYAFY1NU */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior */
+  @apply overscroll-none;
+}
+
+#root {
+  @apply min-h-full;
 }
 
 * {

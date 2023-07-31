@@ -370,7 +370,7 @@ export function DashboardLayout() {
           </button>
 
           {/* Search input */}
-          <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+          <div className="hidden flex-1 self-stretch 2xs:flex xs:gap-x-0 sm:gap-x-4 lg:gap-x-6">
             <form className="flex flex-1">
               <label htmlFor="search-field" className="sr-only">
                 Search
@@ -382,7 +382,7 @@ export function DashboardLayout() {
                 />
                 <input
                   id="search-field"
-                  className="block h-9 w-80 rounded-md border border-neutral-200 bg-transparent px-2 py-0 pl-8 pr-0 text-sm text-white shadow-sm transition focus:border-neutral-400 focus:outline-none focus:ring-0 dark:border-neutral-800 dark:focus:border-neutral-600 md:w-112"
+                  className="block h-9 w-10 rounded-md border border-neutral-200 bg-transparent px-2 py-0 pl-8 text-sm text-white shadow-sm transition focus:border-neutral-400 focus:outline-none focus:ring-0 dark:border-neutral-800 dark:focus:border-neutral-600 2xs:w-24 xs:w-28 sm:w-60 md:w-112"
                   placeholder="Search..."
                   type="text"
                   name="search"
