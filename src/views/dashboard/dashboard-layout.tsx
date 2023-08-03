@@ -1,5 +1,11 @@
 import { imageRegistry } from '@/assets';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Input,
+  Label,
+} from '@/components';
 import { useSidebar, useTheme } from '@/hooks';
 import { cn } from '@/utils';
 import { Dialog, Menu, Transition } from '@headlessui/react';
@@ -7,13 +13,10 @@ import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import {
   ArrowLeftOnRectangleIcon,
   Cog6ToothIcon,
-  // Cog6ToothIcon,
   ComputerDesktopIcon,
   FolderIcon,
-  // FolderIcon,
   MoonIcon,
   ServerIcon,
-  // ServerIcon,
   SunIcon,
   UserIcon,
   XMarkIcon,
@@ -370,19 +373,19 @@ export function DashboardLayout() {
           </button>
 
           {/* Search input */}
-          <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+          <div className="hidden flex-1 self-stretch 2xs:flex xs:gap-x-0 sm:gap-x-4 lg:gap-x-6">
             <form className="flex flex-1">
-              <label htmlFor="search-field" className="sr-only">
+              <Label htmlFor="search-field" className="sr-only">
                 Search
-              </label>
+              </Label>
               <div className="relative flex w-full items-center">
                 <MagnifyingGlassIcon
                   className="pointer-events-none absolute inset-y-0 left-2 h-full w-5 text-neutral-500"
                   aria-hidden="true"
                 />
-                <input
+                <Input
+                  className="pl-8 2xs:w-24 xs:w-28 sm:w-60 md:w-112"
                   id="search-field"
-                  className="block h-9 w-80 rounded-md border border-neutral-200 bg-transparent px-2 py-0 pl-8 pr-0 text-sm text-white shadow-sm transition focus:border-neutral-400 focus:outline-none focus:ring-0 dark:border-neutral-800 dark:focus:border-neutral-600 md:w-112"
                   placeholder="Search..."
                   type="text"
                   name="search"

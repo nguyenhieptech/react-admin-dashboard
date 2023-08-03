@@ -5,13 +5,29 @@
 @tailwind utilities;
 
 html,
-body,
-#root {
+body {
   font-family: 'Inter', sans-serif;
   @apply h-full w-full scroll-smooth antialiased;
   @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50;
+  /* https://www.youtube.com/shorts/rwriYAFY1NU */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior */
+  @apply overscroll-none;
+}
+
+#root {
+  @apply min-h-full;
 }
 
 * {
   @apply focus:outline-1 focus:outline-neutral-300 dark:focus:outline-neutral-900;
+}
+
+*:not(svg, svg *, span) {
+  /* https://www.youtube.com/watch?v=QBnXaaadp50&t=1190s */
+  @apply transition-colors duration-300;
+}
+
+a {
+  @apply duration-0;
+  @apply cursor-pointer;
 }
