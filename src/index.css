@@ -29,4 +29,5 @@ body {
 
 a {
   @apply duration-0;
+  @apply cursor-pointer;
 }
