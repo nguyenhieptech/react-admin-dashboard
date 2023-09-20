@@ -18,6 +18,7 @@ import {
   MoonIcon,
   ServerIcon,
   SunIcon,
+  TableCellsIcon,
   UserIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
@@ -34,6 +35,11 @@ const navigation = [
     name: 'Deployments',
     href: 'deployments',
     icon: ServerIcon,
+  },
+  {
+    name: 'Tables',
+    href: 'tables',
+    icon: TableCellsIcon,
   },
   {
     name: 'Sign In',
@@ -387,7 +393,6 @@ export function DashboardLayout() {
                   className="pl-8 2xs:w-24 xs:w-28 sm:w-60 md:w-112"
                   id="search-field"
                   placeholder="Search..."
-                  type="text"
                   name="search"
                 />
               </div>
@@ -421,7 +426,7 @@ export function DashboardLayout() {
             >
               <Menu.Items className="absolute right-0 z-10 mt-2.5 w-44 origin-top-right rounded-md border border-neutral-300 bg-white py-2 shadow-sm focus:outline-none dark:border-white/10 dark:bg-neutral-900">
                 {themeOptions.map((themeOption) => (
-                  <Menu.Item>
+                  <Menu.Item key={themeOption.id}>
                     {({ active }) => (
                       <div
                         className={cn(
@@ -487,7 +492,7 @@ export function DashboardLayout() {
         </header>
 
         {/* Children of Dashboard Layout */}
-        <main role="main" className="h-full bg-white dark:bg-black">
+        <main role="main" className="h-full bg-white dark:bg-neutral-900">
           <Outlet />
         </main>
       </div>

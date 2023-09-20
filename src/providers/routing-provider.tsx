@@ -6,6 +6,7 @@ import {
   Home,
   SignIn,
   SignUp,
+  Tables,
 } from '@/views';
 import {
   Route,
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route element={<DashboardLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="deployments" element={<Deployments />} />
+        <Route path="tables" element={<Tables />} />
       </Route>
       <Route element={<AuthLayout />}>
         <Route path="sign-in" element={<SignIn />} />

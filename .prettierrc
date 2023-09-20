@@ -16,6 +16,12 @@
       }
     },
     {
+      "files": "./src/components/*.{tsx,ts}",
+      "options": {
+        "printWidth": 110
+      }
+    },
+    {
       "files": "./store/api/*.ts",
       "options": {
         "printWidth": 120
