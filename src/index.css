@@ -22,7 +22,7 @@ body {
   @apply focus:outline-1 focus:outline-neutral-300 dark:focus:outline-neutral-900;
 }
 
-*:not(svg, svg *, span) {
+*:not(svg, svg *, span, table *, table td tr, div) {
   /* https://www.youtube.com/watch?v=QBnXaaadp50&t=1190s */
   @apply transition-colors duration-300;
 }
